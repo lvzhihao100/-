@@ -17,7 +17,7 @@ android:icon="@*android:drawable/ic_menu_attachment"
 　解决办法如下：　  
 　第1个问题：Tools --> Generate JavaDoc -->打开对话框活，在"Other command line arguments"输入 “-bootclasspath /Users/用户名/sdk/platforms/android-14/android.jar”，红色部分每个人电脑不尽相同，指定android.jar的位置就行。　  
 　第2个问题：同上打开对话框后，在"Other command line arguments"追加输入(参数之间勿忘空格)“-encoding utf-8 -charset utf-8”　　经过这样设置后，已经能够成功生成文档。期间有一些报错和警告，根据提示修改即可。　  
-　当然，使用jdk1.6的时候问题较多，升级到jdk1.7+后，会顺利很多，警告和错误要少很多
+　当然，使用jdk1.6的时候问题较多，升级到 jdk1.7+后，会顺利很多，警告和错误要少很多
 #4、下拉刷新框架android-Ultra-Pull-To-Refresh导入到Android Studio
 ##
 参考网址http://www.ithao123.cn/content-10797769.html
