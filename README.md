@@ -41,7 +41,11 @@ dependencies {
     compile 'in.srain.cube:cube-sdk:1.0.44.38'
     compile 'com.google.android:support-v4:r7'
 }
-#5、ducpicate
+#5、Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.
+> com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/NOTICE
+	File1: H:\Users\vzhihao\AndroidStudioProjects\VideoPlayer\app\libs\httpclient-4.3.5.jar
+	File2: H:\Users\vzhihao\AndroidStudioProjects\VideoPlayer\app\libs\httpmime-4.3.5.jar
+	File3: H:\Users\vzhihao\AndroidStudioProjects\VideoPlayer\app\libs\httpcore-4.3.2.jar
 在build.gradle中添加
 	compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -50,3 +54,13 @@ dependencies {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/DEPENDENCIES'
     }
+#actionBar+PagerView
+actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);空指针异常
+更改主题为Android:theme.light
+#查找 [代码网站][1]
+
+[1]: http://grepcode.com/
+
+#tab的几种方式[网址][2],demo[下载地址][3]
+[2]:http://blog.csdn.net/crazy1235/article/details/42678877
+[3]:http://download.csdn.net/detail/crazy1235/8358671
