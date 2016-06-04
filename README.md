@@ -64,3 +64,21 @@ actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);空指针异常
 #tab的几种方式[网址][2],demo[下载地址][3]
 [2]:http://blog.csdn.net/crazy1235/article/details/42678877
 [3]:http://download.csdn.net/detail/crazy1235/8358671
+#遇错 [解决网址][4]
+java.lang.IllegalArgumentException: Service Intent must be explicit: Intent { act=com.example.raid.service.FIRST_SERVICE }
+##
+  因为版本的原因，有些时候我们使用Service的时需要采用隐私启动的方式，但是Android 5.0一出来后，其中有个特性就是Service Intent  must be explitict，也就是说从Lollipop开始，service服务必须采用显示方式启动。
+##
+
+5.0前的版本只需要如下代码即可开启服务： 
+
+final Intent intent = new Intent();
+intent.setAction("com.example.raid.service.FIRST_SERVICE"); 
+
+但是现在需要加上一个setPackage方法：
+
+final Intent intent = new Intent();
+        intent.setAction("com.example.raid.service.FIRST_SERVICE");
+        intent.setPackage(getPackageName());
+##
+[4]:http://www.ithao123.cn/content-10219582.html
