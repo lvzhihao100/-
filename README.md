@@ -54,7 +54,7 @@ dependencies {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/DEPENDENCIES'
     }
-#actionBar+PagerView
+#6、actionBar+PagerView
 actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);空指针异常
 更改主题为Android:theme.light
 #查找 [代码网站][1]
@@ -82,3 +82,52 @@ final Intent intent = new Intent();
         intent.setPackage(getPackageName());
 ##
 [4]:http://www.ithao123.cn/content-10219582.html
+##7、android studio更新导致一直refreshing
+###在下载相应的gradle,路径（.gradle/wrapper/）
+gradle下载网址：http://services.gradle.org/distributions
+
+##8、使用webview注意问题
+###
+1. 添加权限<uses-permission android:name="android.permission.INTERNET" />
+2. 出现:net::err_cache错误 
+#
+	if (Build.VERSION.SDK_INT >= 19) {
+            mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        }
+3. 加载js 
+#
+	WebSettings webSettings = myWebView.getSettings();
+	webSettings.setJavaScriptEnabled(true);
+#9、[Android Studio中获取SHA1或MD5的方法 （百度地图）](http://www.imooc.com/article/6899 "Android Studio中获取SHA1或MD5的方法 （百度地图）")
+#
+	keytool -v -list -keystore H:\Users\vzhihao\.android\debug.keystore
+#10、使用TabActivity注意事项
+1. TabHost必须包含一个 TabWidget和一个FrameLayout
+2. FrameLayout的id属性必须为 @android:id/tabcontent
+3. TabWidget的id属性必须为 @android:id/tabs
+#11、Fragment Touch事件泄露
+##
+当Fragment的栈里面有几个fragment的时候，这个时候如果是几个fragment状态是hide，当你触摸当前fragment的时候，下层的fragment的事件被触发，这是由于Touch事件泄露传到了下层中。解决方法就是拦截fragment的 
+
+解决办法：
+
+// onTouch事件 将上层的触摸事件拦截 
+
+	public class GroupApplyFragment extends Fragment 
+	 implements OnTouchListener { 
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
+    }
+ 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        // 拦截触摸事件，防止泄露下去
+        view.setOnTouchListener(this);
+    }
+#12、[fragment嵌套fragment问题](http://bbs.9ria.com/thread-259216-1-1.html )
+当遇到这种嵌套多层的Fragment的时候第一个主要点就是第一层的FragmentManager，可以通过getSupportFragmentManager()或者getFragmentManager()获得，但是在第二层的fragment中如果想获得FragmentManager就不能这样了，必须用getChildFragmentManager()。
+
+
+	
